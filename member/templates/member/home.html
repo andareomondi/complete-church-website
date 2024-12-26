@@ -1,5 +1,5 @@
 {% extends 'member/base.html' %}
-
+{% load static %}
 {% block title %}
 Home
 {% endblock title %}
@@ -9,6 +9,7 @@ Home
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body p-4">
+        <!-- Signup Form -->
         <div class="auth-form active" id="signupForm">
           <div class="d-flex justify-content-between align-items-center mb-4">
             <div class="d-flex gap-2">
@@ -20,6 +21,7 @@ Home
           <h2 class="fw-bold mb-2">Create an account 👋</h2>
           <p class="text-muted mb-2">You need to sign up to access this feature.</p>
           <form id="signupStepForm">
+            <!-- Step 1 -->
             <div class="step-content active" data-step="1">
               <div class="mb-3">
                 <label for="signupEmail" class="form-label">Email</label>
@@ -31,6 +33,7 @@ Home
               </div>
               <button type="button" class="btn btn-primary w-100 mb-3 next-step">Next</button>
             </div>
+            <!-- Step 2 -->
             <div class="step-content" data-step="2">
               <div class="mb-3">
                 <label for="firstName" class="form-label">First Name</label>
@@ -43,6 +46,7 @@ Home
               <button type="button" class="btn btn-secondary w-100 mb-3 prev-step">Previous</button>
               <button type="button" class="btn btn-primary w-100 mb-3 next-step">Next</button>
             </div>
+            <!-- Step 3 -->
             <div class="step-content" data-step="3">
               <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="termsCheck" required>
@@ -56,9 +60,12 @@ Home
             <a href="#" id="showLoginForm" class="text-muted">Already have an account? Login</a>
           </div>
         </div>
+        <!-- Login Form -->
         <div class="auth-form" id="loginForm">
           <h2 class="fw-bold mb-2">Hi, Welcome back 👋</h2>
-          <p class="text-muted mb-2">Log in to access your account.</p>
+          <div id="replace">
+            <p class="text-muted mb-2">Log in to access your account.</p>
+          </div>
           <form method="post" id="actual-login-form">
             {% csrf_token %}
             <div class="mb-3">
@@ -82,9 +89,10 @@ Home
   </div>
 </div>
 
+<!-- Hero Section -->
 <section class="hero-section py-5">
   <div class="container">
-    <div class="row align-items-center ">
+    <div class="row align-items-center">
       <div class="col-lg-6" data-aos="fade-right">
         <div class="d-flex align-items-center gap-2 mb-3">
           <i class="bi bi-geo-alt-fill text-primary"></i>
@@ -92,28 +100,34 @@ Home
         </div>
         <h1 class="display-4 fw-bold mb-4">Discover the richness of God's presence.</h1>
         <div class="row justify-content-center">
-          <div class="col text-center"><button class="btn btn-primary btn-lg" id="hero-button">Let's Get Started</button></div>
+          <div class="col text-center">
+            <button class="btn btn-primary btn-lg" id="hero-button" data-bs-toggle="modal"
+              data-bs-target="#authModal">Get Started</button>
+          </div>
         </div>
       </div>
       <div class="col-lg-6 mt-3" data-aos="fade-left">
-        <img src="/static/img/pulpit.jpg" class="img-fluid rounded-3">
+        <img src="{% static 'img/pulpit.jpg' %}" class="img-fluid rounded-3" alt="Pulpit Image">
       </div>
     </div>
   </div>
 </section>
+
+<!-- About Section -->
 <section id="about" class="section">
   <div class="container">
     <h2 class="section-title text-center" data-aos="fade-up">About Us</h2>
     <div class="row">
       <div class="col-md-6" data-aos="fade-right">
-        <p>Modern Church is a welcoming community dedicated to spreading love, hope, and faith. We believe in
-          the power of togetherness and the strength of spiritual growth.</p>
-        <p>Our mission is to create a positive impact in our community and beyond, through worship, education,
-          and outreach programs that touch lives and inspire change.
-        </p>
+        <p>Modern Church is a welcoming community dedicated to spreading love, hope, and faith. We believe in the power
+          of togetherness and the strength of spiritual growth.</p>
+        <p>Our mission is to create a positive impact in our community and beyond, through worship, education, and
+          outreach programs that touch lives and inspire change.</p>
         <div class="row justify-content center my-2">
-          <div class="col text-center"><a name="about" id="about" class="btn btn-primary" href="{% url 'home' %}"
-              role="button">Learn more</a></div>
+          <div class="col text-center">
+            <a name="about" id="about" class="btn btn-primary mb-2" href="{% url 'about' %}" role="button">Learn
+              more</a>
+          </div>
         </div>
       </div>
       <div class="col-md-6" data-aos="fade-left">
@@ -127,39 +141,42 @@ Home
     </div>
   </div>
 </section>
+
 <hr>
+<!-- Mission and vision section -->
 <section class="section">
   <div class="container">
-    <h2 class="section-title text-center">
-      Services
-    </h2>
+    <h2 class="section-title text-center">Mission and Vision</h2>
     <div class="row justify-content-center">
-      <div class="col-md-4 mb-4" data-aos="zoom-in">
-        <div class="card text-center">
-          <div class="card-body">
-            <i class="fas fa-church feature-icon"></i>
-            <h5 class="card-title">Sunday Worship</h5>
-            <p class="card-text">Join us every Sunday at 10:00 AM for our main worship service.</p>
+      <div class="col-sm-10 col-md-8 col-lg-8 text-center">
+        <div class="accordion" id="missionVisionAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingMission">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMission"
+                aria-expanded="true" aria-controls="collapseMission">
+                Our Mission
+              </button>
+            </h2>
+            <div id="collapseMission" class="accordion-collapse collapse show" aria-labelledby="headingMission"
+              data-bs-parent="#missionVisionAccordion">
+              <div class="accordion-body">
+                AIC Macedonia is a Christian family committed in doing Christian reconstruction which involves creation
+                of mandates (Gen
+                1:26) and the great commission (Matt 28: 18)
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
-        <div class="card text-center">
-          <div class="card-body">
-            <i class="fas fa-users feature-icon"></i>
-            <h5 class="card-title">Youth Group</h5>
-            <p class="card-text">Our youth group meets every Wednesday at 7:00 PM for fun and fellowship.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="300">
-        <div class="card text-center">
-          <div class="card-body">
-            <i class="fas fa-users feature-icon"></i>
-            <h5 class="card-title">Youth Group</h5>
-            <p class="card-text">Our youth group meets every Wednesday at 7:00 PM for fun and fellowship.
-            </p>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingVision">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseVision" aria-expanded="false" aria-controls="collapseVision">
+                Our Vision
+              </button>
+            </h2>
+            <div id="collapseVision" class="accordion-collapse collapse" aria-labelledby="headingVision"
+              data-bs-parent="#missionVisionAccordion">
+              <div class="accordion-body">Worship God in truth and in the Spirit (John 4:24)</div>
+            </div>
           </div>
         </div>
       </div>
@@ -168,37 +185,76 @@ Home
 </section>
 
 <hr>
-<section id="contact" class="section">
+<!-- Services Section -->
+<section class="section">
   <div class="container">
-    <h2 class="section-title text-center" data-aos="fade-up">Contact Us</h2>
+    <h2 class="section-title text-center">Services</h2>
     <div class="row justify-content-center">
-      <div class="col-md-6 mb-2" data-aos="fade-right">
-        <form id="contact-form">
-          {% csrf_token %}
-          <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" required name="name">
+      <div class="col-md-4 mb-4" data-aos="zoom-in">
+        <div class="card text-center">
+          <div class="card-body">
+            <img src="{% static 'img/jesus.jpg' %}" class="img-fluid rounded-top mb-2" alt="Service Image">
+            <h5 class="card-title mt-2 text-decoration-underline">Sunday Worship</h5>
+            <p class="card-text">Join us every Sunday at 10:00 AM for our main worship service and at 09:00am for the
+              early birds for the first service.</p>
           </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input name="email type=" email" class="form-control" id="email" required>
+          <div class="card-footer">
+            <button class="btn btn-primary">Learn more</button>
           </div>
-          <div class="mb-3">
-            <label for="message" class="form-label">Message</label>
-            <textarea name="message" class="form-control" id="message" rows="4" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
+        </div>
       </div>
-      <div class="col-md-4 mb-2 text-center" data-aos="fade-left">
-        <h4 style="text-decoration: underline;">Visit Us</h4>
-        <p>HXCJ+JQ4, Athi River<br>Machakos, Kenya</p>
-        <h4>Service Times</h4>
-        <p>Sunday: 10:00 AM<br>Wednesday: 7:00 PM</p>
-        <h4>Get in Touch</h4>
-        <p>Phone: +254 717 740400<br>Email: info@modernchurch.com</p>
+      <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="card text-center">
+          <div class="card-body">
+            <img src="{% static 'img/ced.jpg' %}" class="img-fluid rounded-top mb-2" alt="Service Image">
+            <h5 class="card-title mt-2 text-decoration-underline">C.E.D Groups</h5>
+            <p class="card-text">Wondering where you could meet your peers and discuss your issues. We got you covered
+              with peer groups</p>
+
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary">Learn more</button>
+          </div>
+        </div>
       </div>
-      <div class="col-md-6 mb-2" data-aos="fade-left">
+      <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="card text-center">
+          <div class="card-body">
+            <img src="{% static 'img/sunday.jpg' %}" class="img-fluid rounded-top mb-2" alt="Service Image">
+            <h5 class="card-title mt-2 text-decoration-underline">Sunday school</h5>
+            <p class="card-text">In our church we do believe that bring up of a child in Christ hence Sunday school is
+              here to teach our kids the ways of our Lord Jesus Christ.</p>
+
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary">Learn more</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="card text-center">
+          <div class="card-body">
+            <img src="{% static 'img/people.jpg' %}" class="img-fluid rounded-top mb-2" alt="Service Image">
+            <h5 class="card-title mt-2 text-decoration-underline">Prayer cells</h5>
+            <p class="card-text">These are channels crafted to ensure that the ministry continues to reach you even if
+              you are unable to visit the santuary</p>
+
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary">Learn more</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Location</h2>
+    <div class="row justify-content-center">
+      <div class="col col-sm-10 col-md-10 col-lg-10">
         <div class="ratio ratio-16x9 my-2">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.5783586964985!2d36.9819531!3d-1.4284875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f7546a677f7bd%3A0x9b5249eb8c361bf0!2sHXCJ%2BJQ4%2C%20Athi%20River!5e0!3m2!1sen!2ske!4v1727202931455!5m2!1sen!2ske"
@@ -209,5 +265,4 @@ Home
     </div>
   </div>
 </section>
-
 {% endblock content %}

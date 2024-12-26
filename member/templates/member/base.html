@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AIC Macedonia
+  <title>AIC Macedonia |
     {% block title %}
 
     {% endblock title %}
@@ -15,7 +15,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="shortcut icon" href="{% static 'img/OIP.ico' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
 </head>
 
 <body>
@@ -83,12 +85,17 @@
             </a>
           </li>
           <li class="nav-item text-center">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'Profile' pk=request.user.id %}">
               <i class="bi bi-person"></i>
               PROFILE
             </a>
           </li>
         </ul>
+      </div>
+      <div class="d-flex align-items-center gap-3 px-2">
+        <a href="{% url 'SignOut' %}" class="btn btn-outline-secondary ">
+          SIGN OUT
+        </a>
       </div>
       {% else %}
       <div class="d-flex align-items-center gap-3 px-2">
@@ -118,6 +125,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/aos.js' %}"></script>
 </body>
 
 </html>

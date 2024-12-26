@@ -23,4 +23,11 @@ from member.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Home.as_view(), name='home'),
+    path("about/", About.as_view(), name="about"),
+    path("sermons/", Word.as_view(), name="sermon"),
+    path("prayers/", PrayerCells.as_view(), name="prayers"),
+    path("login/", Login.as_view(), name="login"),
+    path("profile/<int:pk>/", Profile.as_view(), name="Profile"),
+    path("register/", Register.as_view(), name="Register"),
+    path("signOut/", SignOut.as_view(), name="SignOut"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

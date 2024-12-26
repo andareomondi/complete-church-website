@@ -92,6 +92,7 @@ class ChoirPracticeDay(models.Model):
     stop = models.TimeField()
 
 class Sermon(models.Model):
+    topic = models.CharField(max_length=255, null=True, blank=True)
     image = models.ImageField(upload_to='sermon')
     book = models.CharField(max_length=255)
     verse = models.CharField(max_length=500)

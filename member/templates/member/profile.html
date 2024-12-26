@@ -1,0 +1,35 @@
+{% extends 'member/base.html' %}
+{% load static %}
+
+{% block title %}
+Profile
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <!-- Profile Picture and Basic Info -->
+    <div class="col-md-4 text-center">
+      <img src="{% static 'img/default_profile.jpg' %}" class="img-fluid rounded-circle mb-3" alt="Profile Picture">
+      <h2>{{ user.username }}</h2>
+      <p>{{ user.email }}</p>
+    </div>
+    <!-- Profile Details -->
+    <div class="col-md-8">
+      <h3>About Me</h3>
+      <p>{{ user.profile.bio }}</p>
+      <hr>
+      <h3>Contact Information</h3>
+      <p><strong>Phone:</strong> {{ user.profile.phone }}</p>
+      <p><strong>Address:</strong> {{ user.profile.address }}</p>
+      <hr>
+      <h3>Recent Activities</h3>
+      <ul>
+        {% for activity in user.profile.activities %}
+        <li>{{ activity }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock content %}

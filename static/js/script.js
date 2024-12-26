@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var email = actualLoginForm.elements["email"].value;
     var password = actualLoginForm.elements["password"].value;
     $.ajax({
-      url: "hell/", // Replace with your Django view URL
+      url: "login/", // Replace with your Django view URL
       type: "POST",
       data: {
         password: password,
@@ -95,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       success: function (response) {
         if (response.redirect) {
+          alert(response.message);
           window.location.href = response.redirect;
         } else {
           alert("Invalid credentials");

@@ -1,0 +1,98 @@
+{% extends 'member/base.html' %}
+{% load static %}
+{% block title %}
+About
+{% endblock title %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col col-sm-10 col-md-8 col-lg-6 text-center">About us</div>
+</div>
+<div class="section">
+  <div class="container">
+    <h2 class="section-title">History</h2>
+  </div>
+</div>
+<div class="section">
+  <div class="container">
+    <h2 class="section-title">Leaders</h2>
+    <div class="row">
+      <!-- Leader 1 -->
+      <div class="col-md-4 mb-4" data-aos="fade-up">
+        <div class="card">
+          <img src="{% static 'img/leader1.jpg' %}" class="card-img-top" alt="Leader 1">
+          <div class="card-body text-center">
+            <h5 class="card-title">Leader 1</h5>
+            <p class="card-text">Senior Pastor</p>
+            <p class="card-text">Leader 1 has been serving the community for over 20 years with dedication and love.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Leader 2 -->
+      <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="card">
+          <img src="{% static 'img/leader2.jpg' %}" class="card-img-top" alt="Leader 2">
+          <div class="card-body text-center">
+            <h5 class="card-title">Leader 2</h5>
+            <p class="card-text">Associate Pastor</p>
+            <p class="card-text">Leader 2 is known for their inspiring sermons and community outreach programs.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Leader 3 -->
+      <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="card">
+          <img src="{% static 'img/leader3.jpg' %}" class="card-img-top" alt="Leader 3">
+          <div class="card-body text-center">
+            <h5 class="card-title">Leader 3</h5>
+            <p class="card-text">Youth Pastor</p>
+            <p class="card-text">Leader 3 engages with the youth and leads various youth programs and activities.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section id="contact" class="section">
+  <div class="container">
+    <h2 class="section-title text-center" data-aos="fade-up">Contact Us</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-6 mb-2" data-aos="fade-right">
+        <form id="contact-form">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" required name="name">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input name="email" type=" email" class="form-control" id="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea name="message" class="form-control" id="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+      <div class="col-md-4 mb-2 text-center" data-aos="fade-left">
+        <h4 style="text-decoration: underline;">Visit Us</h4>
+        <p>HXCJ+JQ4, Athi River<br>Machakos, Kenya</p>
+        <h4>Service Times</h4>
+        <p>Sunday: 10:00 AM<br>Wednesday: 7:00 PM</p>
+        <h4>Get in Touch</h4>
+        <p>Phone: +254 717 740400<br>Email: info@modernchurch.com</p>
+      </div>
+      <div class="col-md-6 mb-2" data-aos="fade-left"></div>
+      <div class="ratio ratio-16x9 my-2">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.5783586964985!2d36.9819531!3d-1.4284875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f7546a677f7bd%3A0x9b5249eb8c361bf0!2sHXCJ%2BJQ4%2C%20Athi%20River!5e0!3m2!1sen!2ske!4v1727202931455!5m2!1sen!2ske"
+          width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+{% endblock content %}

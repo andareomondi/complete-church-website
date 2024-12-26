@@ -1,0 +1,31 @@
+{% extends 'member/base.html' %} {% load static %}
+{% block title %}
+Sermons
+{% endblock title %}
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    {% for word in words %}
+
+    <div class="col-md-4 mb-4" data-aos="zoom-in">
+      <h2 class="section-title text-center">{{word.topic}}</h2>
+      <div class="card text-center">
+        <div class="card-body">
+          <img src="{{ word.image.url }}" class="img-fluid rounded-top mb-2" alt="Service Image" />
+          <h5 class="card-title mt-2 text-decoration-underline">
+            <i class="fa fa-book" aria-hidden="true"></i> {{ word.book }}
+          </h5>
+          <p class="card-text">{{ word.description|truncatewords:25 }}</p>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" value="{{ word.id }}">
+            Learn more
+          </button>
+          <!-- write htmx to get the more details on the sermon -->
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}
