@@ -92,14 +92,14 @@ class ChoirPracticeDay(models.Model):
     stop = models.TimeField()
 
 class Sermon(models.Model):
-    topic = models.CharField(max_length=255, null=True, blank=True)
-    image = models.ImageField(upload_to='sermon')
+    topic = models.CharField(max_length=255, blank=True, null=True)
+    video_link = models.CharField(max_length=255, blank=True, null=True)
     book = models.CharField(max_length=255)
     verse = models.CharField(max_length=500)
     description = models.TextField(max_length=5000)
     preacher = models.CharField(max_length=255, default='Justus Mutuku')
     preacher_number = models.CharField(max_length=30, default='0717740400')
-    preacher_profile_pic = models.ImageField(upload_to='preacher-profile-pics', default='static/assets/user.png')
+    preacher_profile_pic_url = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.book

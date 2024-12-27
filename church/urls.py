@@ -19,6 +19,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from member.views import *
+from managment.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +31,6 @@ urlpatterns = [
     path("profile/<int:pk>/", Profile.as_view(), name="Profile"),
     path("register/", Register.as_view(), name="Register"),
     path("signOut/", SignOut.as_view(), name="SignOut"),
+    path("dashboard/", Dashboard.as_view(), name="dashboard"),
+    path("sermon-creation/", SermonCreation.as_view(), name="sermon_creation"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

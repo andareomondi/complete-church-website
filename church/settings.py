@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'member',
+    'managment',
 ]
 
 MIDDLEWARE = [
@@ -131,7 +132,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+# authentication backend using the custom userbackend
 AUTH_USER_MODEL = 'member.Member'
 AUTHENTICATION_BACKENDS = [
     'member.auth_backends.AuthBackend',

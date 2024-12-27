@@ -233,13 +233,14 @@ a:hover {
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  cursor: pointer;
+  cursor: none;
   transition: background-color 0.3s, color 0.3s;
 }
 .modal-step.active {
   background-color: var(--primary-color);
   color: white;
 }
+
 .auth-form {
   display: none;
 }
@@ -248,6 +249,7 @@ a:hover {
 }
 .modal-content {
   border-radius: 1rem;
+  max-width: 290px;
 }
 .step-content {
   display: none;
