@@ -60,7 +60,9 @@ class ContactForm(models.Model):
         return f'{self.name} - {self.email}'
 
 class ChurchImage(models.Model):
+    info = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to='church-images')
+
 class Choir(models.Model):
     name = models.CharField(max_length=50)
     short_description = models.CharField(max_length=255)

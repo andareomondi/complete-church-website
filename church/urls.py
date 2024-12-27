@@ -33,4 +33,7 @@ urlpatterns = [
     path("signOut/", SignOut.as_view(), name="SignOut"),
     path("dashboard/", Dashboard.as_view(), name="dashboard"),
     path("sermon-creation/", SermonCreation.as_view(), name="sermon_creation"),
+    path("gallery/", Gallery.as_view(), name="gallery"),
+    path("sundayschool/", SundaySchool.as_view(), name="sundayschool"),
+    path("cedgroups/", CEDGroups.as_view(), name="cedgroups"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

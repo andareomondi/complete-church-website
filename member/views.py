@@ -4,26 +4,8 @@ from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 # Create your views here.
-class Home(View):
-    def get(self, request):
-        return render(request, 'member/home.html')
 
-class About(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, template_name='member/about.html')
-
-class Word(View):
-	def get(self, request):
-		words = Sermon.objects.all()
-		context = {
-			'words': words,
-		}
-		return render(request, 'member/sermons.html', context=context)
-
-class PrayerCells(View):
-     def get(self, request):
-          return render(request, 'member/prayercells.html')
-
+# authentication views
 class Login(View):
      def post(self, request):
         user = Member()
@@ -69,6 +51,32 @@ class Register(View):
             }
             return JsonResponse(data)
 
+class SignOut(View):
+    def get(self, request):
+        logout(request)
+        return redirect(to='home')
+
+# Important views handled here for the app
+class Home(View):
+    def get(self, request):
+        return render(request, 'member/home.html')
+
+class About(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, template_name='member/about.html')
+
+# specific views for specific sections
+class Word(View):
+	def get(self, request):
+		words = Sermon.objects.all()
+		context = {
+			'words': words,
+		}
+		return render(request, 'member/sermons.html', context=context)
+
+class PrayerCells(View):
+     def get(self, request):
+          return render(request, 'member/prayercells.html')
 class Profile(View):
         def get(self, request, pk):
             if request.user.is_authenticated:
@@ -79,7 +87,31 @@ class Profile(View):
                 return render(request, 'member/profile.html', context=context)
             else:
                 return redirect(to='login')
-class SignOut(View):
+class Gallery(View):
     def get(self, request):
-        logout(request)
-        return redirect(to='home')
+        images = ChurchImage.objects.all()
+        context = {
+            'images':images,
+        }
+        return render(request, template_name='member/gallery.html', context=context)
+
+class SundaySchool(View):
+     def get(self, request):
+          return render(request, 'member/sundayschool.html')
+
+class CEDGroups(View):
+     def get(self, request):
+          groups = CedGroup.objects.all()
+          context = {
+               'groups': groups
+          }
+          return render(request, 'member/cedgroups.html', context = context)
+class SpecificCedGroup(View):
+     def get(self, request, pk):
+        group = CedGroup.objects.get(id=pk)
+        practice = group.cedpracticeday_set.all()
+        context = {
+            'cedgroup': group,
+            'practice': practice,
+        }
+        return render(request, 'member/cedgroup.html', context=context)
