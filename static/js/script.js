@@ -74,10 +74,36 @@ document.addEventListener("DOMContentLoaded", function () {
   //i will use ajax here for authenticaiton
   signupStepForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    var name = signupStepForm.elements["email"].value;
-    console.log(name);
-    // Here you would typically send the form data to your server
-    alert("Signup successful!");
+    var email = signupStepForm.elements["signupEmail"].value;
+    var password = signupStepForm.elements["signupPassword"].value;
+    var password2 = signupStepForm.elements["signupPassword2"].value;
+    var firstname = signupStepForm.elements["firstName"].value;
+    var lastname = signupStepForm.elements["lastName"].value;
+    var phone = signupStepForm.elements["phone"].value;
+    $.ajax({
+      url: "register/", // Replace with your Django view URL
+      type: "POST",
+      data: {
+        password: password,
+        password2: password2,
+        email: email,
+        firstname: firstname,
+        lastname: lastname,
+        phone: phone,
+        csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(), // Include CSRF token
+      },
+      success: function (response) {
+        if (response.redirect) {
+          alert(response.message);
+          window.location.href = response.redirect;
+        } else {
+          alert("User creation failed. Try again");
+        }
+      },
+      error: function (xhr, status, error) {
+        console.log("Error:", error); // Handle any errors
+      },
+    });
   });
   //i will use ajax here for authenticaiton
   actualLoginForm.addEventListener("submit", function (e) {

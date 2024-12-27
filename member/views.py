@@ -47,10 +47,10 @@ class Login(View):
 
 class Register(View):
      def post(self, request):
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
+        first_name = request.POST.get('firstname')
+        last_name = request.POST.get('lastname')
         email = request.POST.get('email')
-        phone_number = request.POST.get('phone_number')
+        phone_number = request.POST.get('phone')
         password = request.POST.get('password')
         password2 = request.POST.get('password2')
         if password != password2:
@@ -63,6 +63,7 @@ class Register(View):
             user = Member.objects.create_user(email=email, password=password, first_name=first_name, last_name=last_name, phone_number=phone_number)
             user.save()
             data = {
+                'redirect': '/',
                 'status': 'success',
                 'message': 'User registered successfully'
             }
