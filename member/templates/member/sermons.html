@@ -7,6 +7,11 @@ Sermons
   <div class="row">
     {% for word in words %}
 
+    {% if word == '' %}
+    <p class="text-center">There are no sermons uploaded yet. Coming soon!😁</p>
+    {% endif %}
+
+
     <div class="col-sm-10 col-md-4 mb-4" data-aos="zoom-in">
       <h2 class="section-title text-center">Sermons</h2>
       <div class="card text-center">

@@ -38,7 +38,7 @@ class Member(AbstractBaseUser, PermissionsMixin):
     created_on = models.DateTimeField(auto_now_add=True)
     last_login = models.DateField(auto_now=True)
     profile_pic = models.ImageField(blank=True, upload_to='personal_profile_images', null=True)
-
+    address = models.CharField(blank=True, null=True, max_length=255, default='Jamcity')
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_superadmin = models.BooleanField(default=False)
