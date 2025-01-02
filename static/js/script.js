@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var email = actualLoginForm.elements["email"].value;
     var password = actualLoginForm.elements["password"].value;
     $.ajax({
-      url: "login/", // Replace with your Django view URL
+      url: "/", // Replace with your Django view URL
       type: "POST",
       data: {
         password: password,

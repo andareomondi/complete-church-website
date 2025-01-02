@@ -7,28 +7,29 @@ Profile
 
 {% block content %}
 <div class="container mt-5">
-  <div class="row">
+  <div class="row justify-content-center">
     <!-- Profile Picture and Basic Info -->
     <div class="col-md-4 text-center">
-      <img src="{% static 'img/default_profile.jpg' %}" class="img-fluid rounded-circle mb-3" alt="Profile Picture">
-      <h2>{{ user.username }}</h2>
-      <p>{{ user.email }}</p>
+      <div class="profile-image">
+        <img src="{{ user.profile_pic.url }}" class="img-fluid" alt="Profile Picture">
+      </div>
+      <h2>{{ user.first_name }} {{ user.second_name }}</h2>
     </div>
     <!-- Profile Details -->
     <div class="col-md-8">
       <h3>About Me</h3>
-      <p>{{ user.profile.bio }}</p>
+      <p>Email: {{ user.email }}</p>
+      <!-- <p>{{ user.profile.bio }}</p> -->
       <hr>
       <h3>Contact Information</h3>
-      <p><strong>Phone:</strong> {{ user.profile.phone }}</p>
+      <p><strong>Phone:</strong> 0{{ user.phone_number }}</p>
       <p><strong>Address:</strong> {{ user.profile.address }}</p>
       <hr>
       <h3>Recent Activities</h3>
-      <ul>
-        {% for activity in user.profile.activities %}
-        <li>{{ activity }}</li>
-        {% endfor %}
-      </ul>
+      <!-- there should be a form here for people to enter their recent activities -->
+      <form action="" method="post">
+        <button class="btn btn-primary">Submit</button>
+      </form>
     </div>
   </div>
 </div>

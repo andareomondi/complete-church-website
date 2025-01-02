@@ -62,6 +62,9 @@ class ContactForm(models.Model):
 class ChurchImage(models.Model):
     info = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to='church-images')
+    def __str__(self):
+        return self.info
+
 
 class Choir(models.Model):
     name = models.CharField(max_length=50)

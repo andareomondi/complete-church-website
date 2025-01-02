@@ -17,14 +17,20 @@ CED Groups
     <h2 class="section-title text-center">All C.E.D groups present</h2>
 
     {% for group in groups %}
+
+    {% if group == '' %}
+    skfajkjsak
+    {% else %}
+
     <div class="row justify-content-center">
       <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
         <div class="card text-center">
           <div class="card-body">
             <img src="{{ group.profile_pic.url }}" class="img-fluid rounded-top mb-2" alt="Service Image">
-            <h5 class="card-title mt-2 text-decoration-underline">{{group.name}} ({{item.founding}})</h5>
-            <p class="card-text">{{item.short_description}}</p>
-            <small>{{ group.leader }}: {{ group.leader_number}}</small>
+            <h5 class="card-title mt-2 text-decoration-underline">{{group.name}}</h5>
+            <h6>Founded in: {{group.founding}}</h6>
+            <small>Led by: {{ group.leader }} ({{ group.leader_number}})</small>
+            <p class="card-text">{{group.short_description}}</p>
 
           </div>
           <div class="card-footer">
@@ -33,6 +39,7 @@ CED Groups
         </div>
       </div>
     </div>
+    {% endif %}
     {% endfor %}
 
   </div>
